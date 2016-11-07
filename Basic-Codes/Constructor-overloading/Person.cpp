@@ -9,6 +9,8 @@ Person::Person()
 Person::Person(string name){
 
 	this->name = name;
+
+	cout << "Memory location of this: " << this << endl;
 }
 
 string Person::toString(){
