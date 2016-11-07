@@ -6,9 +6,9 @@ Person::Person()
 	name = "George";
 }
 
-Person::Person(string newName){
+Person::Person(string name){
 
-	name = newName;
+	this->name = name;
 }
 
 string Person::toString(){
