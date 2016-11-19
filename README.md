@@ -1,7 +1,8 @@
 # C-coding
 
 
-Sub Folder: 1) Puzzles
+Sub Folder:
+1) Puzzles
 2) Basic codes
 3) Advanced codes
 4) CUDA Programming
@@ -11,3 +12,7 @@ Sub Folder: 1) Puzzles
 8) Computer Vision 
 9) Computer Graphics
 10) Machine Learning
+
+Reserources: 
+1) https://www.udemy.com/learn-advanced-c-programming/learn/v4/t/lecture/3688054?start=45 , search even for basic tutorial
+2) https://www.udemy.com/advanced-c-programming/learn/v4/t/lecture/111068
