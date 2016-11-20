@@ -15,4 +15,4 @@ int main(){
 	return 0;
 }
 
-//FooDerived constructor calls empty constructor, hence(a) is the option 
+//FooDerived constructor calls empty constructor, hence(d) is the option 
