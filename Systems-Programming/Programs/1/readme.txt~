@@ -1,0 +1,15 @@
+Project name: Read program via pipe
+program codes: mapper.c reducer.c combiner.c
+
+Description: 1
+1) Mapper.c : This code assigns inputs from the file to their respective key.
+2) Reducer.c : This code counts number of word instances.
+3) Combiner.c : This code pipes between Mapper.c and Reader.c. Thus Mapper.c writes into the pipe and Reducer.c reads from the pipe.
+
+Instructions to run:
+1) Run "make clean" to erase object files
+2) Run the make file using "make" command on a linux terminal.
+3) Run Combiner.c using "./combiner"
+
+Code by: Arpita S Tugave
+         arpita123@ufl.edu, arpita.subash.tugave@gmail.com
