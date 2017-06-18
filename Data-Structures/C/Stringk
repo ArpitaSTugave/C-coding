@@ -1,0 +1,29 @@
+//String of length k
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+void kstring(int n, int k);
+int A[4];
+
+int main() {
+	kstring(4,2);
+	return 0;
+}
+
+void kstring(int n, int k) {
+	/* process all k-aray string of length n*/
+	
+	if (n < 1) {
+		printf("%d,%d,%d,%d\n", A[3],A[2],A[1],A[0]);
+	}
+
+	else {
+	for (int j = 0; j < k; j++) {
+		A[n - 1] = j;
+		kstring(n - 1, k);
+	}
+	}
+	
+}
