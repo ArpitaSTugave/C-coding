@@ -1,0 +1,66 @@
+/////////////////////////////////////////////////////////
+////////////////////////////////code by Arpita S Tugave
+////////////////////////////////////////////////////////
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+//////////////////////////////////////////// Helper funtion
+
+/* appends three strings */
+char* stradd(const char* string1, const char* string2, const char* string3){
+	size_t len = strlen(string1) + strlen(string2) + strlen(string3);
+	char *return_r = (char*)malloc(len * sizeof(char) + 1);
+	*return_r = '\0';
+	return strcat(strcat(strcat(return_r, string1) ,string2) ,string3);
+}
+
+
+//////////////////////////////////////////// Mapper Function
+
+enum { MAXLINES = 100 };
+ 
+int main()
+{
+
+	int count_name = 0;
+	size_t n;
+	char buffer[300] , *pos;
+
+	FILE *fp = fopen("File.txt", "r");
+
+	//read from the file and store in the array "name
+	if (fp == 0) {
+		fprintf(stderr, "failed to open txt file \n");
+		exit(1);
+	}
+
+	while(fgets(buffer,sizeof(buffer),fp))
+	{
+		//detect space charater in order to store in a 2D array
+		char *p = strtok(buffer," ");
+
+		while( p != NULL) {
+			if(count_name>= MAXLINES && n> BUFSIZ)
+			break;
+			
+			//for last line; remove new line character
+			if ((pos=strchr(p, '\n')) != NULL)
+	     		p[strlen(p)-2] =  0;
+
+			//assign in the form of key value pair
+	     		char *str = stradd("(" , p,",1)"); 
+
+			//print the key value pair to the stdout
+	      		printf("%s\n",str);
+
+	      		p = strtok(NULL," ");
+			count_name++;
+	   }
+	}
+
+
+	   fclose(fp);
+	   return 0;
+
+}

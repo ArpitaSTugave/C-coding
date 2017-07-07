@@ -1,0 +1,16 @@
+CC = gcc
+CFLAGS = -Wall 
+
+all: mapper reducer combiner 
+
+mapper: mapper.c 
+	${CC} ${CFLAGS} -o mapper mapper.c
+
+reducer: reducer.c 
+	${CC} ${CFLAGS} -o reducer reducer.c
+
+combiner: combiner.c
+	${CC} ${CFLAGS} -o combiner combiner.c
+
+clean:
+	rm -f mapper reducer combiner

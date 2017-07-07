@@ -1,0 +1,24 @@
+0. For the first assignment on system calls:
+   
+
+You can search for a specific system call at this website:
+  
+ http://man7.org/linux/man-pages/index.html 
+
+
+2. Introductory tutorial on Pthreads with code samples:
+   
+ https://computing.llnl.gov/tutorials/pthreads/ 
+
+
+3. Linux Virtual File System:
+   
+ http://www.ibm.com/developerworks/library/l-linux-filesystem/     
+ 
+ http://www.tldp.org/LDP/tlk/fs/filesystem.html
+
+
+4. Virtual Memory management, page tables, TLBs: 
+  
+ http://www.tldp.org/LDP/tlk/mm/memory.html
+5. 
