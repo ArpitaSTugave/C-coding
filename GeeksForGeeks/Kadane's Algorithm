@@ -1,0 +1,75 @@
+#include <iostream>
+#include <string>
+#include <cctype>
+#include <limits>
+
+int main() {
+	for (std::string line; std::getline(std::cin, line);)
+	{
+	    int num_in_items = std::stoi(line);
+	    for (int i = 0; i < num_in_items; ++i)
+	    {
+	        std::string data_line, input_line;
+	        std::getline(std::cin, input_line);
+	        std::getline(std::cin, data_line);
+	        int num_digits = std::stoi(input_line);
+	        int digits[num_digits];
+	        int str_start_index = 0, str_end_index = 0;
+	        int sum = -std::numeric_limits<int>::max(), previous_sum = -std::numeric_limits<int>::max(), next_sum = -std::numeric_limits<int>::max();
+	        int max_sum = -std::numeric_limits<int>::max(), previous_max_sum = -std::numeric_limits<int>::max(), next_max_sum = -std::numeric_limits<int>::max();
+	        int count = 0;
+	        
+	        for (int j = 0; j < data_line.length(); ++j)
+	        {
+	            if (!isdigit(data_line[j]))
+	            {
+	                str_end_index = j;
+	                digits[count] = std::stoi(data_line.substr(str_start_index, str_end_index));
+	                
+	                if (count == 0)
+	                {
+	                    sum = digits[count];
+	                }
+	                else
+	                {
+	                    if (sum > max_sum && sum > previous_sum)
+	                    {
+	                        max_sum = sum;
+	                    }
+	                    if (previous_sum > max_sum && previous_sum > sum)
+	                    {
+	                        max_sum = previous_sum;
+	                    }
+	                    
+	                    if (digits[count] > 0 && sum > 0)
+	                    {
+	                        sum += digits[count];
+	                    }
+	                    else if (digits[count] > 0 && sum < 0)
+	                    {
+	                        sum = digits[count];
+	                    }
+	                    else if (digits[count] < 0 && sum < 0)
+	                    {
+	                        if (sum > digits[count])
+	                        {
+	                            previous_sum = sum;
+	                        }
+	                        sum = digits[count];
+	                    }
+	                    else if (digits[count] < 0 && sum > 0)
+	                    {
+	                        previous_sum = sum;
+	                        sum += digits[count];
+	                    }
+	                }
+	                
+	                str_start_index = str_end_index;
+	                ++count;
+	            }
+	        }
+	        std::cout << max_sum << std::endl;
+	    }
+	}
+	return 0;
+}
