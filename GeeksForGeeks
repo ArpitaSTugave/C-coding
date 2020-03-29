@@ -1,0 +1,94 @@
+//https://practice.geeksforgeeks.org/problems/
+// problem - Subarray with given sum
+
+#include <iostream>
+#include <string>
+#include <cctype>
+using namespace std;
+
+int main() {
+	//code
+	for (std::string line; std::getline(std::cin, line);)
+	{
+	    int num_test_cases = std::stoi(line);
+	    
+	    while(num_test_cases != 0)
+	    {
+	        string data_line, sum_line;
+	        std::getline(std::cin, sum_line);
+	        std::getline(std::cin, data_line);
+	        
+	        int start_index = 0, end_index = 0, intermediate_start_index = 0, intermediate_end_index = 0;
+	        for (int i = 0; i < sum_line.length(); ++i)
+	        {
+	            if(!isdigit(sum_line[i]))
+	                intermediate_end_index = i;
+	        }
+	        
+	        int num_digits = std::stoi(sum_line.substr(start_index, intermediate_end_index));
+	        int sum = std::stoi(sum_line.substr(intermediate_end_index, sum_line.length()));
+	        
+	        int digit = 0, count = 0, total = 0;
+	        int digits[num_digits];
+	        bool found = false;
+	        for (int i = 0; i < data_line.length(); ++i)
+	        {
+	            if(!isdigit(data_line[i]))
+	            {
+	                intermediate_end_index = i;
+	                digit = std::stoi(data_line.substr(intermediate_start_index, intermediate_end_index));
+	                intermediate_start_index = intermediate_end_index;
+	                digits[count] = digit;
+	                end_index = count;
+	                
+	                total += digit;
+	                if (total == sum)
+	                {
+	                    found = true;
+	                    break;
+	                }
+	   
+	                while (total > sum)
+	                {
+	                    total -= digits[start_index];
+	                    ++start_index;
+	                }
+	                ++count;
+	            }
+	        }
+	        if (!found)
+	        {
+    	        ++count;
+    	        digit = std::stoi(data_line.substr(intermediate_start_index, data_line.length()));
+    	        intermediate_start_index = intermediate_end_index;
+    	        digits[count] = digit;
+    	        end_index = count;
+    	        
+    	        total += digit;
+	   
+	            while (total > sum)
+	            {
+	               total -= digits[start_index];
+	               ++start_index;
+	            }
+	            if (total == sum)
+	            {
+	               found = true;
+	            }
+	        }
+	        
+	        if (found)
+	        {
+	            std::cout << ++start_index << " " << ++end_index;
+	        }
+	        else
+	        {
+	            std::cout << "not found" << std::endl;
+	        }
+	        std::cout << "\n" << std::endl;
+	        
+	        --num_test_cases;
+	    }
+	}
+	return 0;
+}
