@@ -1,0 +1,92 @@
+#include <iostream>
+#include <cctype>
+#include <string>
+#include <stack>
+using namespace std;
+
+bool IsSatisfied(int a, int b, int c)
+{
+    if (a > b && a > c)
+    {
+        if (a = (b+c))
+            return true;
+    }
+    
+    if (b > a && b > c)
+    {
+        if (b = (a+c))
+            return true;
+    }
+    
+    if (c > a && c > b)
+    {
+        if (c = (a+b))
+            return true;
+    }
+    
+    return false;
+}
+
+class my_stack : public std::stack< int > {
+public:
+    using std::stack<int>::c; // expose the container
+};
+
+void showstack(stack <int> s) 
+{ 
+    while (!s.empty()) 
+    { 
+        cout << '\t' << s.top(); 
+        s.pop(); 
+    } 
+    cout << '\n'; 
+} 
+
+int main() {
+	
+	for (std::string line; std::getline(std::cin, line);)
+	{
+	    int num_test_cases = std::stoi(line);
+	    
+	    for (int i = 0; i < num_test_cases; ++i)
+	    {
+	        std::string num_digit_line, data_line;
+	        std::getline(std::cin, num_digit_line);
+	        std::getline(std::cin, data_line);
+	        
+	        int num_digits = std::stoi(num_digit_line);
+	        int intermediate_start_index = 0, intermediate_end_index = 0, index = 1;
+	        my_stack triplets;
+	        bool found = false;
+	        int return_val = -1;
+	        
+	        for (int i = 0; i < data_line.length(); ++i)
+	        {
+	            if (!isdigit(data_line[i]))
+	            {
+	                intermediate_end_index = i;
+	                int digit = std::stoi(data_line.substr(intermediate_start_index, intermediate_end_index));
+	                triplets.push(digit);
+	                if (triplets.size() > 3)
+	                {
+	                    triplets.pop();
+	                    ++index;
+	                }
+	                //showstack(triplets);
+	                
+	                if (triplets.size() == 3 && IsSatisfied(triplets.c[0], triplets.c[1], triplets.c[2]))
+	                {
+	                    return_val = index;
+	                    break;
+	                }
+	                
+	                intermediate_start_index = intermediate_end_index;
+	            }
+	        }
+	        
+	        std::cout << return_val << std::endl;
+	    }
+	}
+	
+	return 0;
+}
