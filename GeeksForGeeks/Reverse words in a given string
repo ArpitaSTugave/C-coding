@@ -1,0 +1,40 @@
+#include <iostream>
+#include <string>
+#include <stack>
+
+int main() {
+	for (std::string line; std::getline(std::cin, line);)
+	{
+	    int num_inputs = std::stoi(line);
+	    for (int i = 0; i < num_inputs; ++i)
+	    {
+	        std::string input_line;
+	        std::getline(std::cin, input_line);
+	        std::stack<std::string> words;
+	        std::string word;
+	        
+	        for (char &letter : input_line)
+	        {
+	            word += letter;
+	            if (ispunct(letter))
+	            {
+	                words.push(word);
+	                word = "";
+	            }
+	        }
+	        word += ".";
+	        words.push(word);
+	        word = "";
+	        
+	        while(!words.empty())
+	        {
+	            word += words.top();
+	            words.pop();
+	        }
+	        word.pop_back();
+	        
+	        std::cout << word << std::endl;
+	    }
+	}
+	return 0;
+}
